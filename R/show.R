@@ -4,13 +4,16 @@
 #' @param ... arguments to be passed to plot function.
 #'
 #' @importFrom graphics rasterImage
+#' @importFrom graphics plot
+#' @importFrom assertthat assert_that
 #'
 #' @export
-#'
-#' @example
-#' jpeg::readJPEG(paste(R.home(),"/doc/html/logo.jpg",sep=""))
-#' showImage
+#' @examples
+#' img <- jpeg::readJPEG(paste(R.home(),"/doc/html/logo.jpg",sep=""))
+#' showImage(img)
 showImage <- function(img, ...){
+  assert_that(is.matrix(img) || is.array(img))
+
   nr <- nrow(img)
   nc <- ncol(img)
 
@@ -36,4 +39,36 @@ showImage <- function(img, ...){
 
   do.call(plot,args)
   graphics::rasterImage(img, 0, nr, nc, 0)
+}
+
+#' Apply noize to the image.
+#'
+#' @param img applied \code{matrix} or \code{array} expressing the image.
+#' @param salt.rate salt (bleaching) rate on the each pixels.
+#' @param papper.rate papper (darking) rate on the each pixels.
+#'
+#' @importFrom assertthat is.number
+#' @importFrom stats runif
+#'
+#' @return image applied noize.
+#' @export
+noizeSaltPapper <- function(img, salt.rate = 0.01, papper.rate = 0.01){
+  assert_that(is.matrix(img) || is.array(img))
+  assert_that(is.number(salt.rate) && salt.rate >= 0 && salt.rate <= 1)
+  assert_that(is.number(papper.rate) && papper.rate >= 0 && papper.rate <= 1)
+
+  r <- runif(nrow(img)*ncol(img))
+  # salt noize flag
+  nz <- ifelse(r < (salt.rate + papper.rate), 1, 0)
+  # papper noize flag
+  nz <- ifelse(r < papper.rate, -1, nz)
+
+  # applying noize and normalization
+  nzimg <- img + nz
+  nzimg <- ifelse(nzimg > 1, 1, nzimg)
+  nzimg <- ifelse(nzimg < 0, 0, nzimg)
+
+  dim(nzimg) <- dim(img)
+
+  return(nzimg)
 }
