@@ -11,6 +11,7 @@
 #'
 #' @importFrom myfs vnorm
 #' @importFrom myfs overwriteEllipsis
+#' @importFrom myfs angle
 #'
 #' @export
 #'
@@ -21,7 +22,7 @@ arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = 
   end <- c(x1,y1)
   if(identical(start,end)) stop("start point and end point is same.")
 
-  direct <- pi + angle(end - start, c(1, 0))
+  direct <- pi + myfs::angle(end - start, c(1, 0))
   if(length.fixed) alpha <- length
   else alpha <- myfs::vnorm(end - start) * length / cos(angle)
 
@@ -35,18 +36,3 @@ arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = 
 
   graphics::lines(c(x0, x1), c(y0, y1), ...)
 }
-
-#' Calculates angle of two vectors.
-#'
-#' @param x vector 1.
-#' @param y vector 2.
-#'
-#' @return angle in radian.
-#' @export
-#'
-#' @examples
-#' # a example of orthogonal vectors
-#' angle(c(0, 1), c(1, 0))
-#' # = pi / 2
-#'
-angle <- function(x, y) acos(sum(x * y) / vnorm(x) / vnorm(y))
