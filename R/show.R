@@ -11,6 +11,7 @@
 #' @examples
 #' img <- jpeg::readJPEG(paste(R.home(),"/doc/html/logo.jpg",sep=""))
 #' showImage(img)
+#'
 showImage <- function(img, ...){
   assert_that(is.matrix(img) || is.array(img))
 
@@ -52,6 +53,7 @@ showImage <- function(img, ...){
 #'
 #' @return image applied noize.
 #' @export
+#'
 noizeSaltPapper <- function(img, salt.rate = 0.01, papper.rate = 0.01){
   assert_that(is.matrix(img) || is.array(img))
   assert_that(is.number(salt.rate) && salt.rate >= 0 && salt.rate <= 1)
