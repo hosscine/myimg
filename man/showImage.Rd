@@ -17,4 +17,5 @@ Plot a \code{matrix} or \code{array} expressing a image.
 \examples{
 img <- jpeg::readJPEG(paste(R.home(),"/doc/html/logo.jpg",sep=""))
 showImage(img)
+
 }

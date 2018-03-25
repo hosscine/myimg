@@ -8,9 +8,10 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
-Imports: 
+Imports:
     png,
     jpeg,
     graphics,
-    assertthat
+    assertthat,
+    myfs
 RoxygenNote: 6.0.1

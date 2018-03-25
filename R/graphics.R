@@ -9,6 +9,9 @@
 #' @param angle angle from the shaft of the arrow to the edge of the arrow head.
 #' @param ... graphical parameters such as the line characteristics.
 #'
+#' @importFrom myfs vnorm
+#' @importFrom myfs overwriteEllipsis
+#'
 #' @export
 #'
 arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = pi/6, ...){
@@ -20,7 +23,7 @@ arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = 
 
   direct <- pi + angle(end - start, c(1, 0))
   if(length.fixed) alpha <- length
-  else alpha <- vnorm(end - start) * length / cos(angle)
+  else alpha <- myfs::vnorm(end - start) * length / cos(angle)
 
   right <- end + c(cos(angle + direct), sin(angle + direct)) * alpha
   left <- end + c(cos(-angle + direct), sin(-angle + direct)) * alpha
@@ -28,9 +31,9 @@ arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = 
   xy <- rbind(end, left, right)
   ellipsis <- list(...)
   new.ellipsis <- overwriteEllipsis(..., x = xy[, 1], y = xy[, 2], border = ellipsis$col)
-  do.call(polygon,new.ellipsis)
+  do.call(graphics::polygon,new.ellipsis)
 
-  lines(c(x0, x1), c(y0, y1), ...)
+  graphics::lines(c(x0, x1), c(y0, y1), ...)
 }
 
 #' Calculates angle of two vectors.
