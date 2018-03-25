@@ -50,14 +50,15 @@ showImage <- function(img, ...){
 #'
 #' @importFrom assertthat is.number
 #' @importFrom stats runif
+#' @importFrom myfs is.prob
 #'
 #' @return image applied noize.
 #' @export
 #'
 noizeSaltPapper <- function(img, salt.rate = 0.01, papper.rate = 0.01){
   assert_that(is.matrix(img) || is.array(img))
-  assert_that(is.number(salt.rate) && salt.rate >= 0 && salt.rate <= 1)
-  assert_that(is.number(papper.rate) && papper.rate >= 0 && papper.rate <= 1)
+  assert_that(is.prob(salt.rate))
+  assert_that(is.prob(papper.rate))
 
   r <- runif(nrow(img)*ncol(img))
   # salt noize flag
