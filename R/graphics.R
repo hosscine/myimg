@@ -22,7 +22,11 @@ arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = 
   end <- c(x1,y1)
   if(identical(start,end)) stop("start point and end point is same.")
 
-  direct <- pi + myfs::angle(end - start, c(1, 0))
+  # direct <- pi + myfs::angle(end - start, c(1, 0))
+  direct <- atan2((end - start)[2], (end - start)[1])
+
+  debugText(end - start, direct)
+  direct <- direct + pi
   if(length.fixed) alpha <- length
   else alpha <- myfs::vnorm(end - start) * length / cos(angle)
 
@@ -30,8 +34,10 @@ arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = 
   left <- end + c(cos(-angle + direct), sin(-angle + direct)) * alpha
 
   xy <- rbind(end, left, right)
+  debugText(end,left,right, angle/pi , direct/pi)
   ellipsis <- list(...)
-  new.ellipsis <- overwriteEllipsis(..., x = xy[, 1], y = xy[, 2], border = ellipsis$col)
+  new.ellipsis <- overwriteEllipsis(..., x = xy[, 1], y = xy[, 2],
+                                    col = ellipsis$col, border = ellipsis$col)
   do.call(graphics::polygon,new.ellipsis)
 
   graphics::lines(c(x0, x1), c(y0, y1), ...)
