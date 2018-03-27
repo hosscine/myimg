@@ -31,8 +31,7 @@ arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = 
 
   xy <- rbind(end, left, right)
   ellipsis <- list(...)
-  new.ellipsis <- overwriteEllipsis(..., x = xy[, 1], y = xy[, 2],
-                                    col = ellipsis$col, border = ellipsis$col)
+  new.ellipsis <- overwriteEllipsis(..., x = xy[, 1], y = xy[, 2], border = ellipsis$col)
   do.call(graphics::polygon,new.ellipsis)
 
   graphics::lines(c(x0, x1), c(y0, y1), ...)
