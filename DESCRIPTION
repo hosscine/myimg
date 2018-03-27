@@ -1,5 +1,5 @@
 Package: myimg
-Version: 0.2.1.9000
+Version: 0.2.2.9000
 Title: Useful Functions for Image Processing Created by Myself
 Description: Including various functions, for example, 
     plot the image maintainig forms of matrix or array, applying noize and downsampling.
