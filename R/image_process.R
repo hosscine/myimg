@@ -31,3 +31,15 @@ noizeSaltPapper <- function(img, salt.rate = 0.01, papper.rate = 0.01){
 
   return(nzimg)
 }
+
+#' Converts a image to gray scaled.
+#'
+#' @param img target image formed \code{array}.
+#'
+#' @return converted image formed \code{matrix}.
+#' @export
+#'
+convert2Gray <- function(img){
+  assert_that(is.array(img))
+  return(matrix((img[,,1] + img[,,2] + img[,,3]) / 3, nrow(img), ncol(img)))
+}
