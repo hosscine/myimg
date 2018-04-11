@@ -70,9 +70,9 @@ showImageList <- function(lst, row_col = 3, plot.mar = c(2, 2, 2, 1), zero.mar =
                   bottom.5 = plot.mar[3], right.2 = plot.mar[4])
 
   i <- 0
-  n <- 1
+  n <- 0
   repeat{
-    for (i in n:(n + prod(row_col) - 1)){
+    for (i in (n + 1):(n + prod(row_col))){
       if(i > length(lst)) break
       showImage(lst[[i]], ...)
     }
