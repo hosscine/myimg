@@ -6,6 +6,7 @@
 #' @importFrom graphics rasterImage
 #' @importFrom graphics plot
 #' @importFrom assertthat assert_that
+#' @importFrom myfs softwriteEllipsis overwriteEllipsis
 #'
 #' @export
 #' @examples
@@ -28,17 +29,11 @@ showImage <- function(img, ...){
     img <- array(as.vector(img), dim = c(nr, nc, 3))
   }
 
-  # process ...
-  args <- list(...)
-  args$x <- 0
-  args$type <- "n"
-  args$xlab <- ""
-  args$ylab <- ""
-  args$xlim <- c(0, nc)
-  args$ylim <- c(nr, 0)
-  if(is.null(args$cex.axis)) args$cex.axis <- 1.5
+  # process ... for plot
+  elp <- overwriteEllipsis(..., x = 0, type = "n", xlim = c(0, nc), ylim = c(nr, 0))
+  elp <- softwriteEllipsis(..., append = elp, xlab = "", ylab = "", cex.axis = 1.3)
 
-  do.call(plot,args)
+  do.call(plot, elp)
   graphics::rasterImage(img, 0, nr, nc, 0)
 }
 
