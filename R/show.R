@@ -30,8 +30,8 @@ showImage <- function(img, ...){
   }
 
   # process ... for plot
-  elp <- overwriteEllipsis(..., x = 0, type = "n", xlim = c(0, nc), ylim = c(nr, 0))
-  elp <- softwriteEllipsis(..., append = elp, xlab = "", ylab = "", cex.axis = 1.3)
+  elp <- myfs::overwriteEllipsis(..., x = 0, type = "n", xlim = c(0, nc), ylim = c(nr, 0))
+  elp <- myfs::softwriteEllipsis(..., append = elp, xlab = "", ylab = "", cex.axis = 1.3)
 
   do.call(plot, elp)
   graphics::rasterImage(img, 0, nr, nc, 0)
