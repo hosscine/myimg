@@ -1,18 +1,18 @@
 Package: myimg
-Version: 0.2.4.9000
+Version: 0.2.5.9000
 Title: Useful Functions for Image Processing Created by Myself
 Description: Including various functions, for example, 
     plot the image maintainig forms of matrix or array, applying noize and downsampling.
 Authors@R: person("Rentaro", "Futagami", , "futagamirentaro@gmail.com", c("aut", "cre"))
-License: GPL (>=3)
+License: GPL (>=3) + file LICENSE
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true
 Imports:
+    graphics,
     png,
     jpeg,
-    graphics,
     assertthat,
     myfs
 Remotes: hosscine/myfs
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

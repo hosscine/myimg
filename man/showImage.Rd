@@ -2,20 +2,19 @@
 % Please edit documentation in R/show.R
 \name{showImage}
 \alias{showImage}
-\title{Plot a \code{matrix} or \code{array} expressing a image.}
+\title{Plot a image with `matrix` or `array` formed.}
 \usage{
 showImage(img, ...)
 }
 \arguments{
-\item{img}{showed \code{matrix} or \code{array} expressing a image.}
+\item{img}{image `matrix` or `array`.}
 
-\item{...}{arguments to be passed to plot function.}
+\item{...}{optional arguments to be passed to [plot()] function.}
 }
 \description{
-Plot a \code{matrix} or \code{array} expressing a image.
+Plot a image with `matrix` or `array` formed.
 }
 \examples{
 img <- jpeg::readJPEG(paste(R.home(),"/doc/html/logo.jpg",sep=""))
 showImage(img)
-
 }

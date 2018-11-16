@@ -30,9 +30,9 @@ arrows.fill <- function(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = 
   left <- end + c(cos(-angle + direct + pi), sin(-angle + direct + pi)) * alpha
 
   xy <- rbind(end, left, right)
-  ellipsis <- list(...)
-  new.ellipsis <- myfs::overwriteEllipsis(..., x = xy[, 1], y = xy[, 2], border = ellipsis$col)
-  do.call(graphics::polygon,new.ellipsis)
+  ...list <- list(...)
+  elp <- myfs::overwriteEllipsis(..., x = xy[, 1], y = xy[, 2], border = ...list$col)
+  do.call(graphics::polygon, elp)
 
   graphics::lines(c(x0, x1), c(y0, y1), ...)
 }

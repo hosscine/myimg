@@ -4,8 +4,8 @@
 \alias{arrows.fill}
 \title{Draws arrows between pairs of points with filling arrow head.}
 \usage{
-arrows.fill(x0, y0, x1, y1, length = 0.1, length.fixed = F, angle = pi/6,
-  ...)
+arrows.fill(x0, y0, x1, y1, length = 0.1, length.fixed = F,
+  angle = pi/6, ...)
 }
 \arguments{
 \item{x0}{coordinates of points from which to draw.}
